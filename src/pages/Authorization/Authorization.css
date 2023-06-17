@@ -1,0 +1,26 @@
+@font-face {
+  font-family: "Ferry";
+  src: url(./../../fonts/ferry_black.otf);
+}
+.auth{}
+
+.auth__box{}
+
+.auth__title{
+  font-family: 'Ferry';
+  font-style: normal;
+  font-weight: 900;
+  font-size: 40px;
+  line-height: 48px;
+  letter-spacing: 0.02em;
+}
+
+.characters{}
+
+/*SignIn component*/
+.sign-in {
+  
+}
+form{
+
+}
