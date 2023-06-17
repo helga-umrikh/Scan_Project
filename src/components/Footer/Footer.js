@@ -10,8 +10,8 @@ function Footer() {
           <img src={logoFooter} alt="logo" />
         </div>
         <div className="footer__info">
-          <p>г. Москва, Цветной б-р, 40 +7 495 771 21 11 info@skan.ru</p>
-          <p>Copyright. 2022</p>
+          <p className="footer__info-text contacts">г. Москва, Цветной б-р, 40 <br/> +7 495 771 21 11 <br/> info@skan.ru</p>
+          <p className="footer__info-text copyright">Copyright. 2022</p>
         </div>
       </div>
     </footer>
