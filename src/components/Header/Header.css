@@ -71,6 +71,11 @@
   border-radius: 5px;
 }
 
+.register__enter-button a {
+  text-decoration: none;
+  color: inherit;
+}
+
 /* UserBox component */
 
 .user-box {
