@@ -5,6 +5,7 @@ import Footer from "./components/Footer/Footer";
 import Header from "./components/Header/Header";
 import Authorization from "./pages/Authorization/Authorization";
 import Main from "./pages/Main/Main";
+import EmptyPage from "./pages/EmptyPage/EmptyPage";
 
 function App() {
   return (
@@ -12,7 +13,11 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" exact element={<Main />} />
-        <Route path="/authorization" exact element={<Authorization />} />
+        <Route path="/tariff" element={<EmptyPage />} />
+        <Route path="/FAQ" element={<EmptyPage />} />
+        <Route path="/register" element={<EmptyPage />} />
+        <Route path="/authorization" element={<Authorization />} />
+        <Route path="/reset_password" element={<EmptyPage />} />
       </Routes>
       <Footer />
     </div>
