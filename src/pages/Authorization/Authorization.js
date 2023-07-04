@@ -1,7 +1,7 @@
 import React from "react";
 import "./Authorization.css";
 import characters from "./../../images/Characters.svg";
-import SignIn from "./SignIn";
+import SignIn2 from "./SignIn2";
 
 function Authorization() {
   return (
@@ -12,7 +12,7 @@ function Authorization() {
           <img src={characters} alt="characters"></img>
         </div>
       </div>
-      <SignIn />
+      <SignIn2 />
     </div>
   );
 }

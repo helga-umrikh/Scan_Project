@@ -7,7 +7,7 @@
   flex-direction: row;
   justify-content: space-around;
   flex-grow: 1;
-  margin-top: 50px;
+  margin-top: 4em;
 }
 
 .auth__box{
@@ -24,13 +24,76 @@
 }
 
 .characters {
-  margin-left: 100px;
+  margin-left: 6.25em;
 }
 
-/*SignIn component*/
+/*SIGN IN COMPONENT*/
+
 .sign-in {
-  
+  min-width: 27em;
+  height: 33em;
 }
-form{
 
+.sign-in__icon {
+  position: absolute;
+  margin: -2em;
+}
+
+.signup-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 6%;
+}
+
+.nav-underline .nav-link {
+  color: #C7C7C7;
+  font-weight: 400;
+}
+
+.nav-underline .nav-link.active {
+  color: #029491;
+  font-weight: 400;
+}
+
+.form-label {
+  color: #949494
+}
+
+.submit-btn:disabled{
+  background-color: #5970FF;
+  border-color: #5970FF;
+}
+
+.submit-btn:hover {
+  background-color:  #5970FF;
+}
+
+.submit-btn {
+  width: 19em;
+  background-color:  #5970FF;
+}
+
+.reset-password {
+  color: #5970FF;
+}
+
+.sign-in__social-btn {
+  background-color: #FFFF;
+  border: none;
+  padding: 0;
+  margin-right: 5%; 
+}
+
+/*MOBILE*/
+
+@media screen and (max-width: 960px) {
+  .auth {
+    flex-direction: column-reverse;
+  }
+
+  .auth__title{
+    font-size: 22px;
+    font-weight: 900;
+  }
 }
