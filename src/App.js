@@ -6,6 +6,7 @@ import Header from "./components/Header/Header";
 import Authorization from "./pages/Authorization/Authorization";
 import Main from "./pages/Main/Main";
 import EmptyPage from "./pages/EmptyPage/EmptyPage";
+import SearchPage from "./pages/SearchPage/SearchPage";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route path="/register" element={<EmptyPage />} />
         <Route path="/authorization" element={<Authorization />} />
         <Route path="/reset_password" element={<EmptyPage />} />
+        <Route path='/search_page' element={<SearchPage/>} />
       </Routes>
       <Footer />
     </div>
