@@ -1,7 +1,13 @@
 import React from "react";
 import "./Header.css";
+import { useSelector } from "react-redux";
+import { selectUser } from "../../features/userSlice";
 
 function LimitTable() {
+  //упрости этот код
+  const user = useSelector(selectUser);
+  const userInf = user.userInfo;
+
   return (
     <div className="limit-table">
       <div className="limit-table__item">
@@ -9,8 +15,8 @@ function LimitTable() {
         <p>Лимит по компаниям</p>
       </div>
       <div className="limit-table__values">
-        <p className="limit-table__values__used">000</p>
-        <p className="limit-table__values__">000</p>
+      <p className="limit-table__values__used">{userInf.usedCompanyCount}</p>
+        <p className="limit-table__values__">{userInf.companyLimit}</p>
       </div>
     </div>
   );
