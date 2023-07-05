@@ -1,7 +1,3 @@
-@font-face {
-  font-family: "Ferry";
-  src: url(./../../fonts/ferry_black.otf);
-}
 .auth{
   display: flex;
   flex-direction: row;
@@ -66,15 +62,19 @@
 }
 
 .submit-btn:hover {
-  background-color:  #5970FF;
+  background-color: #5970FF;
+  border-color: #5970FF;
+  background-image: linear-gradient(rgb(0 0 0/40%) 0 0);
 }
 
 .submit-btn {
   width: 19em;
   background-color:  #5970FF;
+  border-color: #5970FF;
 }
 
 .reset-password {
+  border-color: #5970FF;
   color: #5970FF;
 }
 
