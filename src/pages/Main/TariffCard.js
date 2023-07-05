@@ -27,7 +27,7 @@ function TariffCard({
     <div>
       <Card
         className="tariff-card shadow text-start"
-        style={user && isCurrentTariff ? { borderColor: color } : {}}
+        style={user && isCurrentTariff ? { border: '2px solid ', borderColor: color } : {}}
       >
         <Card.Header
           className="tariff-card__header"
