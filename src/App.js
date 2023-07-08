@@ -1,6 +1,9 @@
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Routes, Route } from "react-router-dom";
+import React, { useEffect } from 'react';
+import { Routes, Route, useNavigate, useLocation } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { selectUser } from "./features/userSlice";
 import Footer from "./components/Footer/Footer";
 import Header from "./components/Header/Header";
 import Authorization from "./pages/Authorization/Authorization";
@@ -9,6 +12,16 @@ import EmptyPage from "./pages/EmptyPage/EmptyPage";
 import SearchPage from "./pages/SearchPage/SearchPage";
 
 function App() {
+  const user = useSelector(selectUser);
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  useEffect(() => {
+    if (!user && location.pathname === '/search_page' ) {
+      navigate('/');
+    }
+  }, [user, navigate, location]);
+
   return (
     <div className="App">
       <Header />

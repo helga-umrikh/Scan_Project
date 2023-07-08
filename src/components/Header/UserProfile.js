@@ -3,13 +3,14 @@ import "./Header.css";
 import avatar from "./../../images/avatar.svg";
 import { useDispatch } from "react-redux";
 import { logOut } from "../../features/userSlice";
+import { clearData } from "../../features/histogramsSlice";
 
 function UserProfile() {
   const dispatch = useDispatch()
   const handleLogout = (e) => {
     e.preventDefault();
     dispatch(logOut());
-    //или использовать removeItem()?
+    dispatch(clearData());
     localStorage.clear();
   }
 

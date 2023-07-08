@@ -2,3 +2,22 @@
   margin: 0 auto;
   flex-grow: 1;
 }
+
+/*SEARCH-FORM*/
+
+.submit-btn:disabled{
+  background-color: #5970FF;
+  border-color: #5970FF;
+}
+
+.submit-btn:hover {
+  background-color: #5970FF;
+  border-color: #5970FF;
+  background-image: linear-gradient(rgb(0 0 0/40%) 0 0);
+}
+
+.submit-btn {
+  width: 19em;
+  background-color:  #5970FF;
+  border-color: #5970FF;
+}
