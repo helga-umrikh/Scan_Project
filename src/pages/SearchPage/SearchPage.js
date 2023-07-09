@@ -8,25 +8,25 @@ import SearchForm from "./SearchForm";
 function SearchPage() {
   return (
     <div className="search-page">
-      {/* <div className="search-page__container">
-        <div>
-          <div>
-            <h2>НАЙДИТЕ НЕОБХОДИМЫЕ ДАННЫЕ В ПАРУ КЛИКОВ</h2>
-            <p>
+      <div className="search-page__container p-5">
+        <div className="search-page__head mb-3">
+          <div className="search-page__title-box">
+            <h2 className="search-page__title mb-4">НАЙДИТЕ НЕОБХОДИМЫЕ ДАННЫЕ В ПАРУ КЛИКОВ</h2>
+            <p className="search-page__subtitle">
               Задайте параметры поиска. <br />
               Чем больше заполните, тем точнее поиск
             </p>
           </div>
           <div>
             <img src={docs}/>
-            <img src={folder}/>
+            <img className="folder-image" src={folder}/>
           </div>
         </div>
-        <div> */}
+        <div className="search-page__main ">
           <SearchForm />
-          {/* <img src={searchGroup}/>
+          <img src={searchGroup}/>
         </div>
-      </div> */}
+      </div>
     </div>
   );
 }

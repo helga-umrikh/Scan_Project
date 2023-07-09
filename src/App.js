@@ -10,6 +10,8 @@ import Authorization from "./pages/Authorization/Authorization";
 import Main from "./pages/Main/Main";
 import EmptyPage from "./pages/EmptyPage/EmptyPage";
 import SearchPage from "./pages/SearchPage/SearchPage";
+import ResultPage from "./pages/ResultPage/ResultPage";
+
 
 function App() {
   const user = useSelector(selectUser);
@@ -17,7 +19,7 @@ function App() {
   const location = useLocation();
 
   useEffect(() => {
-    if (!user && location.pathname === '/search_page' ) {
+    if (!user && location.pathname === '/search_page') {
       navigate('/');
     }
   }, [user, navigate, location]);
@@ -32,7 +34,8 @@ function App() {
         <Route path="/register" element={<EmptyPage />} />
         <Route path="/authorization" element={<Authorization />} />
         <Route path="/reset_password" element={<EmptyPage />} />
-        <Route path='/search_page' element={<SearchPage/>} />
+        <Route path="/search_page" element={<SearchPage/>} />
+        <Route path="/search_page" element={<ResultPage/>} />
       </Routes>
       <Footer />
     </div>

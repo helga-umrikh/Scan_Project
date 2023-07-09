@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./SearchPage.css";
+import { useNavigate } from "react-router-dom";
 import { Form, Button } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import { responseData } from "../../features/histogramsSlice";
@@ -7,6 +8,7 @@ import { responseData } from "../../features/histogramsSlice";
 
 function SearchForm() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const initialFormState = {
     innCompany: {
@@ -182,14 +184,15 @@ function SearchForm() {
           return response;
         })
         .then((response) => {
-          const {data} = response;
+          const { data } = response;
 
           dispatch(
             responseData({
-              data
+              data,
             })
           );
         })
+        .then(() => {navigate("/result_page")})
         .catch(function (error) {
           throw new Error(error);
         });
@@ -199,108 +202,121 @@ function SearchForm() {
 
   return (
     <Form
-      className="signup-form shadow rounded bg-white"
+      className="search-form p-4 shadow rounded bg-white"
       onSubmit={handleSubmitSearch}
     >
-      <Form.Group>
-        <Form.Label>ИНН компании*</Form.Label>
-        <Form.Control
-          type="text"
-          placeholder="10 цифр"
-          id={"innCompany"}
-          value={formState.innCompany.value}
-          isInvalid={formState.innCompany.isInvalid}
-          onChange={handleFormInput}
-          required
-        />
-      </Form.Group>
+      <div>
+        <Form.Group>
+          <Form.Label className="text-dark">ИНН компании*</Form.Label>
+          <Form.Control
+            className="search-form__input"
+            type="text"
+            placeholder="10 цифр"
+            id={"innCompany"}
+            value={formState.innCompany.value}
+            isInvalid={formState.innCompany.isInvalid}
+            onChange={handleFormInput}
+            required
+          />
+        </Form.Group>
 
-      <Form.Group>
-        <Form.Label>Тональность</Form.Label>
-        <Form.Select
-          id="tonality"
-          value={formState.tonality.value}
-          isInvalid={formState.tonality.isInvalid}
-          onChange={handleFormInput}
-        >
-          <option value={"any"}>Любая</option>
-          <option value={"negative"}>Позитивная</option>
-          <option value={"positive"}>Негативная</option>
-        </Form.Select>
-      </Form.Group>
+        <Form.Group>
+          <Form.Label className="text-dark">Тональность</Form.Label>
+          <Form.Select
+            className="search-form__input"
+            id="tonality"
+            value={formState.tonality.value}
+            isInvalid={formState.tonality.isInvalid}
+            onChange={handleFormInput}
+          >
+            <option value={"any"}>Любая</option>
+            <option value={"negative"}>Позитивная</option>
+            <option value={"positive"}>Негативная</option>
+          </Form.Select>
+        </Form.Group>
 
-      <Form.Group>
-        <Form.Label>Количество документов о выдаче</Form.Label>
-        <Form.Control
-          type="number"
-          min="1"
-          max="1000"
-          //ПОЧЕМУ НЕ РАБОТАЕТ PLACEHOLDER
-          placeholder="от 1 до 1000"
-          id="limit"
-          value={formState.limit.value}
-          isInvalid={formState.limit.isInvalid}
-          onChange={handleFormInput}
-          required
-        />
-      </Form.Group>
+        <Form.Group>
+          <Form.Label className="text-dark">
+            Количество документов о выдаче*
+          </Form.Label>
+          <Form.Control
+            className="search-form__input"
+            type="number"
+            min="1"
+            max="1000"
+            //ПОЧЕМУ НЕ РАБОТАЕТ PLACEHOLDER
+            placeholder="от 1 до 1000"
+            id="limit"
+            value={formState.limit.value}
+            isInvalid={formState.limit.isInvalid}
+            onChange={handleFormInput}
+            required
+          />
+        </Form.Group>
 
-      <Form.Group>
-        <Form.Label>Диапазон поиска*</Form.Label>
-        {/* НЕ РАБОТАЕТ PLACEHOLDER */}
-        <Form.Control
-          type="date"
-          placeholder="Дата начала"
-          id="startDate"
-          value={formState.startDate.value}
-          isInvalid={formState.startDate.isInvalid}
-          onChange={handleFormInput}
-          required
-        />
-        <Form.Control
-          type="date"
-          placeholder="Дата конца"
-          id="endDate"
-          value={formState.endDate.value}
-          isInvalid={formState.startDate.isInvalid}
-          onChange={handleFormInput}
-          required
-        />
-      </Form.Group>
+        <Form.Group>
+          <Form.Label className="text-dark">Диапазон поиска*</Form.Label>
+          {/* НЕ РАБОТАЕТ PLACEHOLDER */}
+          <div className="search-form__date-group">
+            <Form.Control
+              className="search-form__input-date me-4"
+              type="date"
+              placeholder="Дата начала"
+              id="startDate"
+              value={formState.startDate.value}
+              isInvalid={formState.startDate.isInvalid}
+              onChange={handleFormInput}
+              required
+            />
+            <Form.Control
+              className="search-form__input-date"
+              type="date"
+              placeholder="Дата конца"
+              id="endDate"
+              value={formState.endDate.value}
+              isInvalid={formState.startDate.isInvalid}
+              onChange={handleFormInput}
+              required
+            />
+          </div>
+        </Form.Group>
+      </div>
+      <div className="search-form__r-column">
+        <Form.Group className="search-form__checkboxes">
+          {Object.entries(formState).map(
+            ([id, { title, checked }]) =>
+              title &&
+              checked !== undefined && (
+                <div className="mb-2" key={id}>
+                  <Form.Check
+                    className="search-form__check"
+                    type="checkbox"
+                    id={id}
+                    label={title}
+                    checked={checked}
+                    onChange={(e) => handleFormInput(e, "checkbox")}
+                  />
+                </div>
+              )
+          )}
+        </Form.Group>
 
-      <Form.Group>
-        {Object.entries(formState).map(
-          ([id, { title, checked }]) =>
-            title &&
-            checked !== undefined && (
-              <div className="mb-3" key={id}>
-                <Form.Check
-                  type="checkbox"
-                  id={id}
-                  label={title}
-                  checked={checked}
-                  onChange={(e) => handleFormInput(e, "checkbox")}
-                />
-              </div>
-            )
-        )}
-      </Form.Group>
+        <Form.Group className="search-form__button-box">
+          <Button
+            variant="primary"
+            value="Submit Button"
+            type="submit"
+            className="search-form__submit-btn"
+            // disabled={isValid()}
+          >
+            Поиск
+          </Button>
+          <p >*Обязательные к заполнению поля</p>
+        </Form.Group>
 
-      <Form.Group>
-        <Button
-          variant="primary"
-          value="Submit Button"
-          type="submit"
-          className="submit-btn"
-          // disabled={isValid()}
-        >
-          Поиск
-        </Button>
-        <p>*Обязательные к заполнению поля</p>
-      </Form.Group>
-
-      {/* ПОЧЕМУ НЕ ПОЯВЛЯЕТСЯ КОМПОНЕНТ
+        {/* ПОЧЕМУ НЕ ПОЯВЛЯЕТСЯ КОМПОНЕНТ
       <FontAwesomeIcon icon="fa-solid fa-asterisk" className="search-form__asterisk"/> */}
+      </div>
     </Form>
   );
 }

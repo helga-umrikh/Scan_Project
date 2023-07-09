@@ -1,23 +1,115 @@
 .search-page {
-  margin: 0 auto;
+  margin: 0;
   flex-grow: 1;
+}
+
+.search-page__head {
+  display: flex;
+  flex-direction: row;
+}
+
+.search-page__title-box {
+  width: 51em;
+}
+
+.search-page__title {
+  font-family: "Ferry";
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 900;
+  line-height: normal;
+  letter-spacing: 1.2px;
+}
+
+.search-page__subtitle {
+  font-family: "Inter";
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0.4px;
+}
+
+.folder-image{
+  margin-left: 11em;
+}
+
+.search-page__main {
+  display: flex;
+  flex-direction: row;
+  align-items: end;
+  justify-content: space-between;
 }
 
 /*SEARCH-FORM*/
 
-.submit-btn:disabled{
-  background-color: #5970FF;
-  border-color: #5970FF;
+.search-form {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 51em;
 }
 
-.submit-btn:hover {
-  background-color: #5970FF;
-  border-color: #5970FF;
-  background-image: linear-gradient(rgb(0 0 0/40%) 0 0);
+.search-form__input {
+  text-align: center;
+  margin-top: 0.5em;
+  margin-bottom: 2em;
+  width: 15em;
 }
 
-.submit-btn {
+.search-form__input::placeholder {
+  color: #949494;
+}
+
+.search-form__date-group {
+  display: flex;
+  flex-direction: row;
+}
+
+.search-form__input-date {
+  margin-top: 0.5em;
+  margin-bottom: 2em;
+  width: 11em;
+}
+
+.search-form__r-column {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.search-form__check {
+  font-family: "Inter";
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0.54px;
+}
+
+.search-form__button-box {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-top: 8em;
+  padding-left: 5em;
+}
+
+.search-form__submit-btn {
   width: 19em;
-  background-color:  #5970FF;
-  border-color: #5970FF;
+  height: 3.6em;
+  background-color: #5970ff;
+  border-color: #5970ff;
+}
+
+
+.search-form__submit-btn:disabled {
+  background-color: #5970ff;
+  border-color: #5970ff;
+}
+
+.search-form__submit-btn:hover {
+  background-color: #5970ff;
+  border-color: #5970ff;
+  background-image: linear-gradient(rgb(0 0 0/40%) 0 0);
 }
