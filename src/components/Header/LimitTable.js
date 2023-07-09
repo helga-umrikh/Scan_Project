@@ -15,8 +15,8 @@ function LimitTable() {
         <p>Лимит по компаниям</p>
       </div>
       <div className="limit-table__values">
-      <p className="limit-table__values__used">{userInf.usedCompanyCount}</p>
-        <p className="limit-table__values__">{userInf.companyLimit}</p>
+      <p className="limit-table__values_used">{userInf.usedCompanyCount}</p>
+        <p className="limit-table__values_limit">{userInf.companyLimit}</p>
       </div>
     </div>
   );

@@ -11,7 +11,7 @@ function Header() {
   const user = useSelector(selectUser);
   return (
     <header className='header'>
-      <div className='header-container'>
+      <div className='header-container px-5'>
         <div className='logo'>
           <img src={logo} alt='logo'/>
         </div>
