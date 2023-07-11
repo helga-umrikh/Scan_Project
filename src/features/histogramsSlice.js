@@ -26,4 +26,6 @@ export const {responseData, objectSearch, clearData} = histogramsSlice.actions;
 
 export const selectData = (state) => state.histograms.resultData.resultData;
 
+export const selectHistograms = (state) => state.histograms.data.data;
+
 export default histogramsSlice.reducer;

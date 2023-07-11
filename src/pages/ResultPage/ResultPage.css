@@ -5,6 +5,7 @@
 .result-page__top-container {
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
 }
 
 .result-page__title-box {
@@ -35,9 +36,6 @@
   letter-spacing: 0.4px;
 }
 
-.result-page__mid-container {
-}
-
 .result-page__mid-title {
   color: #000;
   font-family: "Ferry";
@@ -61,23 +59,99 @@
 .result-page__cards-container {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-evenly;
+}
+
+.result-page__button-box {
+  display: flex;
+  justify-content: center;
+}
+
+.result-page__button {
+  padding: 0.5em 2em;
+  border-color: #5970ff;
+  background-color: #5970ff;
+  color: #fff;
+  font-family: "Inter";
+  font-size: 22px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: 0.88px;
+}
+
+.result-page__button:hover {
+  background-color: #5970ff;
+  border-color: #5970ff;
+  background-image: linear-gradient(rgb(0 0 0/40%) 0 0);
 }
 
 /*DOCUMENT-CARD*/
 
-.card__date-source {
+.card {
+  max-width: 41em;
+  box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.2);
+}
+
+.card__head {
   display: flex;
   flex-direction: row;
 }
 
+.card__head-text {
+  color: #949494;
+  font-family: Inter;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0.32px;
+}
+
+.card__title {
+  color: #000;
+  font-family: "Inter";
+  font-size: 26px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: 0.52px;
+}
+
 .card__tag {
+  max-width: 13em;
   border-radius: 5px;
-  background: #FFB64F;
-  width: 8em;
+  background: #ffb64f;
   height: 1.5em;
   text-align: center;
   color: #000;
-  font-size: 14px;
+  font-size: 12px;
 }
 
+.card__text {
+  color: #000;
+  font-family: "Inter";
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0.32px;
+  opacity: 0.5;
+}
+
+.card__footer {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+.card-button {
+  padding: 0.5em 2em;
+  background: #7ce3e1;
+  border-color: #7ce3e1;
+  color: #000;
+}
+
+.card-button:hover {
+  background-image: linear-gradient(rgb(0 0 0/40%) 0 0);
+}
