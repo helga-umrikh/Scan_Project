@@ -3,7 +3,7 @@ import "./SearchPage.css";
 import { useNavigate } from "react-router-dom";
 import { Form, Button } from "react-bootstrap";
 import { useDispatch } from "react-redux";
-import { responseData } from "../../features/histogramsSlice";
+import { responseData, objectSearch } from "../../features/histogramsSlice";
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 function SearchForm() {
@@ -192,12 +192,115 @@ function SearchForm() {
             })
           );
         })
-        .then(() => {navigate("/result_page")})
         .catch(function (error) {
           throw new Error(error);
         });
     };
     getHistograms(token);
+
+    const getTotalResult = (token) => {
+      const {
+        maxFullness,
+        inBusinessNews,
+        onlyMainRole,
+        onlyWithRiskFactors,
+        excludeTechNews,
+        excludeAnnouncements,
+        excludeDigests,
+      } = initialFormState;
+
+      const url = "https://gateway.scan-interfax.ru/api/v1/objectsearch";
+      const payload = {
+        issueDateInterval: {
+          startDate: formState.startDate.value,
+          endDate: formState.endDate.value,
+        },
+        searchContext: {
+          targetSearchEntitiesContext: {
+            targetSearchEntities: [
+              {
+                type: "company",
+                sparkId: null,
+                entityId: null,
+                inn: formState.innCompany.value,
+                maxFullness: maxFullness.checked,
+                inBusinessNews: inBusinessNews.checked,
+              },
+            ],
+            onlyMainRole: onlyMainRole.checked,
+            tonality: formState.tonality.value,
+            onlyWithRiskFactors: onlyWithRiskFactors.checked,
+            riskFactors: {
+              and: [],
+              or: [],
+              not: [],
+            },
+            themes: {
+              and: [],
+              or: [],
+              not: [],
+            },
+          },
+          themesFilter: {
+            and: [],
+            or: [],
+            not: [],
+          },
+        },
+        searchArea: {
+          includedSources: [],
+          excludedSources: [],
+          includedSourceGroups: [],
+          excludedSourceGroups: [],
+        },
+        attributeFilters: {
+          excludeTechNews: excludeTechNews.checked,
+          excludeAnnouncements: excludeAnnouncements.checked,
+          excludeDigests: excludeDigests.checked,
+        },
+        similarMode: "duplicates",
+        limit: formState.limit.value,
+        sortType: "sourceInfluence",
+        sortDirectionType: "desc",
+        intervalType: "month",
+        histogramTypes: ["totalDocuments", "riskFactors"],
+      };
+
+      const options = {
+        method: "POST",
+        mode: "cors",
+        headers: {
+          Authorization: `Bearer ${token.accessToken}`,
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify(payload),
+      };
+
+      return fetch(url, options)
+        .then((response) => {
+          return response.json();
+        })
+        .then((response) => {
+          localStorage.setItem("resultData", JSON.stringify(response));
+          return response;
+        })
+        .then((response) => {
+          dispatch(
+            objectSearch({
+              resultData: response
+            })
+          );
+        })
+        .then(() => {
+          navigate("/result_page");
+        })
+        .catch(function (error) {
+          throw new Error(error);
+        })
+    };
+
+    getTotalResult(token);
   };
 
   return (
@@ -311,7 +414,7 @@ function SearchForm() {
           >
             Поиск
           </Button>
-          <p >*Обязательные к заполнению поля</p>
+          <p>*Обязательные к заполнению поля</p>
         </Form.Group>
 
         {/* ПОЧЕМУ НЕ ПОЯВЛЯЕТСЯ КОМПОНЕНТ

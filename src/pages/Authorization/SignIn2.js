@@ -9,6 +9,7 @@ import google_icon from "./../../images/google_icon.svg";
 import facebook_icon from "./../../images/facebook_icon.svg";
 import yandex_icon from "./../../images/yandex_icon.svg";
 import lock_icon from "./../../images/lock-icon.svg";
+import { getAccountInfo } from "../../api"
 
 function SignIn2() {
   const navigate = useNavigate();
@@ -35,7 +36,6 @@ function SignIn2() {
     event.preventDefault();
 
     const loginUser = async () => {
-      //функция ЗАПРОС ИНФ АККАУНТА
       const getAccountInfo = (token) => {
         if (token.errorCode) {
           return;
@@ -77,6 +77,7 @@ function SignIn2() {
           login,
           password,
         };
+
         const options = {
           method: "POST",
           mode: "cors",

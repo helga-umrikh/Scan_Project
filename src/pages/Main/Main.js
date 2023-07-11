@@ -1,7 +1,7 @@
 import React from "react";
 import "./Main.css";
-import { Button } from 'react-bootstrap'
-import { Link } from "react-router-dom";
+import { Button } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { selectUser } from "../../features/userSlice";
 import SliderComponent from "./SliderComponent";
@@ -11,6 +11,11 @@ import mainMidImg from "./../../images/main_mid_img.svg";
 
 function Main() {
   const user = useSelector(selectUser);
+  const navigate = useNavigate();
+
+  const navigateToSearch = () => {
+    navigate("/search_page");
+  };
 
   return (
     <div className="main">
@@ -18,18 +23,27 @@ function Main() {
         <div className="main-top">
           <div className="main-top__box">
             <h1 className="main-title mb-4">
-              СЕРВИС ПО ПОИСКУ ПУБЛИКАЦИЙ <br/> О КОМПАНИИ  ПО ЕГО ИНН
+              СЕРВИС ПО ПОИСКУ ПУБЛИКАЦИЙ <br /> О КОМПАНИИ ПО ЕГО ИНН
             </h1>
             <p className="main-top__slogan">
-              Комплексный анализ публикаций, получение данных <br/> в формате PDF на
-              электронную почту.
+              Комплексный анализ публикаций, получение данных <br /> в формате
+              PDF на электронную почту.
             </p>
-            { user != null && <Button className="request-data-btn btn-lg">
-              <Link to="/search_page" className="request-data-link text-decoration-none">Запросить данные</Link>
-            </Button>}
+            {user != null && (
+              <Button 
+                className="request-data-btn btn-lg"
+                onClick={navigateToSearch}
+              >
+                Запросить данные
+              </Button>
+            )}
           </div>
           <div className="main-top__img-box">
-            <img className="main-top__img" src={mainTopImg} alt="user interracting with services" />
+            <img
+              className="main-top__img"
+              src={mainTopImg}
+              alt="user interracting with services"
+            />
           </div>
         </div>
         <div className="main-mid">
@@ -38,7 +52,11 @@ function Main() {
             <SliderComponent></SliderComponent>
           </div>
           <div>
-          <img  className="main-mid__img" src={mainMidImg} alt="user interracting with services" />
+            <img
+              className="main-mid__img"
+              src={mainMidImg}
+              alt="user interracting with services"
+            />
           </div>
         </div>
         <div className="main-bottom">

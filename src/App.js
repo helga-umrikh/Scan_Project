@@ -35,7 +35,7 @@ function App() {
         <Route path="/authorization" element={<Authorization />} />
         <Route path="/reset_password" element={<EmptyPage />} />
         <Route path="/search_page" element={<SearchPage/>} />
-        <Route path="/search_page" element={<ResultPage/>} />
+        <Route path="/result_page" element={<ResultPage/>} />
       </Routes>
       <Footer />
     </div>

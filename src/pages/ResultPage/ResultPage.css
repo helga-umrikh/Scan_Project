@@ -1,0 +1,83 @@
+.result-page {
+  flex-grow: 1;
+}
+
+.result-page__top-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.result-page__title-box {
+  padding-top: 1em;
+  padding-right: 5em;
+}
+
+.result-page__title {
+  color: #000;
+  font-family: "Ferry";
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 900;
+  line-height: normal;
+  letter-spacing: 1.6px;
+}
+
+.result-page__subtitle {
+  padding-top: 2em;
+  padding-right: 12em;
+
+  color: #000;
+  font-family: "Inter";
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0.4px;
+}
+
+.result-page__mid-container {
+}
+
+.result-page__mid-title {
+  color: #000;
+  font-family: "Ferry";
+  font-size: 30px;
+  font-style: normal;
+  font-weight: 900;
+  line-height: normal;
+  letter-spacing: 0.6px;
+}
+
+.result-page__result-subtitle {
+  color: #949494;
+  font-family: "Inter";
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0.36px;
+}
+
+.result-page__cards-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+/*DOCUMENT-CARD*/
+
+.card__date-source {
+  display: flex;
+  flex-direction: row;
+}
+
+.card__tag {
+  border-radius: 5px;
+  background: #FFB64F;
+  width: 8em;
+  height: 1.5em;
+  text-align: center;
+  color: #000;
+  font-size: 14px;
+}
+
