@@ -4,7 +4,8 @@ import { useNavigate } from "react-router-dom";
 import { Form, Button } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import { responseData, objectSearch } from "../../features/histogramsSlice";
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import InnValidation from './InnValidation';
+
 
 function SearchForm() {
   const dispatch = useDispatch();
@@ -14,22 +15,29 @@ function SearchForm() {
     innCompany: {
       value: "",
       isInvalid: null,
+      checkValidation: value => InnValidation(value)
     },
     tonality: {
       value: "any",
-      isInvalid: null,
     },
     limit: {
       value: 0,
       isInvalid: null,
+      checkValidation: value => value >= 1 && value <= 1000
     },
     startDate: {
       value: "",
       isInvalid: null,
+      checkValidation: (value, prevState) => {
+        return prevState.endDate.value !== "" ? prevState.endDate.value >= value : true
+      }
     },
     endDate: {
       value: "",
       isInvalid: null,
+      checkValidation: (value, prevState) => {
+        return prevState.startDate.value !== "" ? prevState.startDate.value <= value : true
+      }
     },
     maxFullness: {
       title: "Признак максимальной полноты",
@@ -61,7 +69,13 @@ function SearchForm() {
     },
   };
 
-  const [formState, setFormState] = useState(initialFormState);
+  const [formState, setFormState] = useState(initialFormState); 
+
+  const checkFormValidation = () => {
+    return !Object.values(formState)
+      .filter(({ isInvalid }) => isInvalid !== undefined)
+      .every(({ isInvalid }) => isInvalid === false || isInvalid === null)
+  }
 
   const handleFormInput = ({ target }, type) => {
     const { id, value } = target;
@@ -75,6 +89,21 @@ function SearchForm() {
           [id]: {
             checked,
             title: prevState[id].title,
+          },
+        };
+      });
+
+      return;
+    }
+
+    if (formState[id].isInvalid !== undefined) {
+      setFormState((prevState) => {
+        return {
+          ...prevState,
+          [id]: {
+            ...prevState[id],
+            value,
+            isInvalid: !formState[id].checkValidation(value, prevState),
           },
         };
       });
@@ -347,7 +376,6 @@ function SearchForm() {
             type="number"
             min="1"
             max="1000"
-            //ПОЧЕМУ НЕ РАБОТАЕТ PLACEHOLDER
             placeholder="от 1 до 1000"
             id="limit"
             value={formState.limit.value}
@@ -359,7 +387,7 @@ function SearchForm() {
 
         <Form.Group>
           <Form.Label className="text-dark">Диапазон поиска*</Form.Label>
-          {/* НЕ РАБОТАЕТ PLACEHOLDER */}
+
           <div className="search-form__date-group">
             <Form.Control
               className="search-form__input-date me-4"
@@ -377,7 +405,7 @@ function SearchForm() {
               placeholder="Дата конца"
               id="endDate"
               value={formState.endDate.value}
-              isInvalid={formState.startDate.isInvalid}
+              isInvalid={formState.endDate.isInvalid}
               onChange={handleFormInput}
               required
             />
@@ -410,15 +438,12 @@ function SearchForm() {
             value="Submit Button"
             type="submit"
             className="search-form__submit-btn"
-            // disabled={isValid()}
+            disabled={checkFormValidation()}
           >
             Поиск
           </Button>
           <p>*Обязательные к заполнению поля</p>
         </Form.Group>
-
-        {/* ПОЧЕМУ НЕ ПОЯВЛЯЕТСЯ КОМПОНЕНТ
-      <FontAwesomeIcon icon="fa-solid fa-asterisk" className="search-form__asterisk"/> */}
       </div>
     </Form>
   );
