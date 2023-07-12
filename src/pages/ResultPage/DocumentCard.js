@@ -4,16 +4,7 @@ import "./ResultPage.css";
 import example from '../../images/example.png'
 
 function DocumentCard({
-  // cardInfo: {
-  //   date,
-  //   link,
-  //   title,
-  //   subtitle,
-  //   tag,
-  //   img,
-  //   text,
-  //   words
-  // }
+
 }) {
   return (
     <Card className="result-card">
@@ -23,7 +14,7 @@ function DocumentCard({
           <Card.Link href="#" className="result-card__head-text">Комсомольская правда KP.RU</Card.Link>
         </div>
         <Card.Title className="result-card__title mb-3">
-          Скиллфэктори - лучшая онлайн-школа для будущих айтишников
+          Title
         </Card.Title>
         <div className="result-card__tag mb-3">
           <Card.Text>Технические новости</Card.Text>

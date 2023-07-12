@@ -1,24 +1,28 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Button } from "react-bootstrap";
-import { useSelector } from 'react-redux'
 import "./ResultPage.css";
 import result_icon from "../../images/result_icon.svg";
-import ResultSlider from "./ResultSlider";
+import {TestSlider} from "./TestSlider";
+import { useDispatch } from "react-redux";
+import { responseData, objectSearch } from "../../features/histogramsSlice";
 import DocumentCard from "./DocumentCard";
-import { selectData } from '../../features/histogramsSlice'
 
 function ResultPage() {
-  const resultData = useSelector(selectData);
-  const initialCardsCount = 4;
+  const dispatch = useDispatch();
 
-  const [cardsData, setCardsData] = useState([]);
-  const [next, setNext] = useState(initialCardsCount);
-
-  const handleMoreImage = () => {
-    setNext(next + initialCardsCount);
+  const getDocuments = () => {
+    const resultData = localStorage.getItem("resultData");
+    const parsedResult = JSON.parse(resultData);
+    const itemsArr = parsedResult.items;
+    const idsArray = itemsArr.map(e => e.encodedId);
+    localStorage.setItem("itemsIds", JSON.stringify(idsArray));
+    return idsArray;
   };
 
-  const getCardsData = (ids) => {
+    const ids = getDocuments();
+
+     // берет информацию для карточек статей
+  const cardsData = (ids) => {
     const token = JSON.parse(localStorage.getItem("authToken"));
     const url = "https://gateway.scan-interfax.ru/api/v1/documents";
     const payload = {
@@ -40,21 +44,31 @@ function ResultPage() {
       .then((response) => {
         return response.json();
       })
+      .then((response) => {
+        localStorage.setItem("cardsData", JSON.stringify(response));
+        return response;
+      })
+      .then((response) => {
+        dispatch(
+          responseData({
+            cards: response
+          })
+        )
+      })
       .catch(function (error) {
         throw new Error(error);
       });
   }
+  cardsData(ids);
 
-  useEffect(() => {
-    const ids = resultData.items.map(item => item.encodedId)
-    getCardsData(ids).then(data => {
-      setCardsData(data)
-    })
-  }, [resultData])
+  const cardsInfo = JSON.parse(localStorage.getItem("cardsData"));
+  const fisrtObject = cardsInfo[0];
+  const ok= fisrtObject.ok;
+  const titleCard = ok.title.text;
 
   return (
     <div className="result-page">
-      <div className="result-page__container">
+      <div className="result-page__container p-5">
         <div className="result-page__top-container">
           <div className="result-page__title-box">
             <h2 className="result-page__title">
@@ -65,7 +79,7 @@ function ResultPage() {
             </p>
           </div>
           <div className="result-page__icon">
-            <img className="result-page__icon" src={result_icon}></img>
+            <img src={result_icon}></img>
           </div>
         </div>
         <div className="result-page__mid-container">
@@ -75,37 +89,18 @@ function ResultPage() {
               Найдено NUM вариантов
             </p>
           </div>
-          <ResultSlider />
         </div>
         <h3 className="result-page__mid-title mb-5">СПИСОК ДОКУМЕНТОВ</h3>
         <div className="result-page__cards-container mb-5">
-
-
-        {cardsData?.slice(0, next)?.map((card, index) => {
-            return (
-              <div
-                key={index}
-              >
-                <DocumentCard />
-              </div>
-            );
-          })}
+        <DocumentCard/>
+        <DocumentCard />
         </div>
         <div className="result-page__button-box">
-
-
-          {next < cardsData?.length && (
-            <Button
-              className="mt-4"
-              onClick={handleMoreImage}
-            >
-              Load more
-            </Button>
-          )}
+          <Button className="result-page__button">Показать больше</Button>
         </div>
       </div>
     </div>
   );
 }
 
-export default ResultPage; 
+export default ResultPage;
