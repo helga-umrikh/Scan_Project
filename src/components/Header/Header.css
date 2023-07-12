@@ -19,6 +19,11 @@
 .logo {
   max-width: 100%;
   max-height: 100%;
+  flex: 1;
+}
+
+.header-mobile{
+  display: none;
 }
 
 /* Navbar component */
@@ -29,9 +34,9 @@
   justify-content: space-around;
   width: 15em;
   height: 6em;
-
   font-size: 14px;
   line-height: 17px;
+  margin: 0 auto;
 }
 
 .navbar__button {
@@ -40,6 +45,11 @@
 }
 
 /* Register component */
+.header_logInBox{
+  display: flex;
+  justify-content: flex-end;
+  flex: 1;
+}
 
 .register {
   display: flex;
@@ -104,11 +114,11 @@
 
 .limit-table_loading {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
-  width: 11em;
-  height: 4em;
+  width: 17em;
+  height: 5em;
   font-size: 10px;
   line-height: 12px;
 
@@ -116,6 +126,11 @@
   border-radius: 5px;
   opacity: 30%;
 }
+
+.limit-table__loader-icon{
+  margin: 0 auto;
+}
+
 
 .limit-table__item {
   display: flex;
@@ -193,4 +208,95 @@ div.limit-table__values > p {
   border-radius: 70%;
 }
 
+
 /* MOBILE */
+@media screen and (max-width: 720px) {
+  .header-container{
+    display: none;
+  }
+
+  .header-mobile{
+    display: flex;
+
+  }
+
+  .burger-menu-box{
+    display: flex;
+    flex-direction: row;
+  }
+
+  .header_logInBox-mobile{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .register {
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+
+  .register__divider{
+    display: none;
+  }
+
+  .register__enter-button{
+    margin-top: 5%;
+    width: 100%;
+    height: 3em;
+  }
+
+  .navbar {
+    flex-direction: column;
+    height: 9em;
+  }
+
+  .navbar__button{
+    color: #ffffff;
+  }
+
+  .register__button {
+    border: none;
+    background-color: #029491;
+    color: #ffffff;
+  }
+
+  .user-profile{
+    justify-content: center;
+    height: 3em;
+  }
+
+  .log-out_btn{
+    width: 18em;
+    height: 3em;
+    font-size: 10px;
+    line-height: 12px;
+    border-radius: 5px;
+    background: #7CE3E1;
+    color: #ffffff;
+  }
+
+  .user-info{
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 auto;
+  }
+
+  .avatar{
+    display: none;
+  }
+
+  .user-info__name{
+    color: #ffffff;
+  }
+
+  .limit-table{
+    position: absolute;
+    margin-top: 1em;
+    margin-left: 14em;
+  }
+  .logo {
+    position: absolute;
+  }
+}

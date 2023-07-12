@@ -7,68 +7,59 @@ import "slick-carousel/slick/slick-theme.css";
 // import Slide from "./Slide";
 
 function ResultSlider() {
-  const sliderRef = useRef(null);
+  // const data = useSelector(selectHistograms);
+  // const totalDocs = data[0];
+  // const totalDocsData = totalDocs.data;
+  // const riskFactors = data[1];
+  // const riskFactorsData = riskFactors.data;
 
-  const handleBeforeChange = (current, next) => {
-    if (next === 0 || current === 0) {
-      sliderRef.current.slickPause();
-    } else {
-      sliderRef.current.slickPlay();
-    }
-  };
-    // const data = useSelector(selectHistograms);
-    // const totalDocs = data[0];
-    // const totalDocsData = totalDocs.data;
-    // const riskFactors = data[1];
-    // const riskFactorsData = riskFactors.data;
-
-    // const sliderData = totalDocsData.map(({ date, value }, idx) => {
-    //   return {
-    //     date,
-    //     docsValue: value,
-    //     risksValue: riskFactorsData[idx].value,
-    //   };
-    // });
+  // const sliderData = totalDocsData.map(({ date, value }, idx) => {
+  //   return {
+  //     date,
+  //     docsValue: value,
+  //     risksValue: riskFactorsData[idx].value,
+  //   };
+  // });
 
   const settings = {
     dots: false,
     infinite: true,
     speed: 500,
     slidesToShow: 4,
-    slidesToScroll: 1,
-    beforeChange: handleBeforeChange,
+    slidesToScroll: 2,
+    initialSlide: 1,
   };
 
   return (
     <div>
-          <div>
-        <p>Период</p>
-        <p>Всего</p>
-        <p>Риски</p>
-      </div>
-    <Slider ref={sliderRef} {...settings}>
-      {/* {sliderData.map((e) => (
+      <Slider {...settings}>
+        {/* {sliderData.map((e) => (
         <Slide sliderInfo={e}/>
       ))} */}
-      <div>
-        <p>HHHHH</p>
-      </div>
-      <div>
-        <p>HHHHH</p>
-      </div>
-      <div>
-        <p>HHHHH</p>
-      </div>
-      <div>
-        <p>HHHHH</p>
-      </div>
-      <div>
-        <p>iiii</p>
-      </div>
-      <div>
-        <p>iiii</p>
-      </div>
-    </Slider>
+        <div>
+          <p>Период</p>
+          <p>Всего</p>
+          <p>Риски</p>
+        </div>
+        <div>
+          <p>HHHHH</p>
+        </div>
+        <div>
+          <p>HHHHH</p>
+        </div>
+        <div>
+          <p>HHHHH</p>
+        </div>
+        <div>
+          <p>HHHHH</p>
+        </div>
+        <div>
+          <p>iiii</p>
+        </div>
+        <div>
+          <p>iiii</p>
+        </div>
+      </Slider>
     </div>
   );
 }

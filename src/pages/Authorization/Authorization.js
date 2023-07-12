@@ -13,6 +13,7 @@ function Authorization() {
         </div>
       </div>
       <SignIn2 />
+      <p className="auth__title_mobile">Для оформления подписки на тариф, необходимо авторизоваться.</p>
     </div>
   );
 }

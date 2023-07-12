@@ -24,7 +24,7 @@ function TariffCard({
   const user = useSelector(selectUser);
 
   return (
-    <div>
+    <div className="tariff-card__container">
       <Card
         className="tariff-card shadow text-start"
         style={user && isCurrentTariff ? { border: '2px solid ', borderColor: color } : {}}

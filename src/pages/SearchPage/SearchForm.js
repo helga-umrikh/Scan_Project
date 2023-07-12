@@ -305,7 +305,7 @@ function SearchForm() {
 
   return (
     <Form
-      className="search-form p-4 shadow rounded bg-white"
+      className="search-form shadow rounded bg-white"
       onSubmit={handleSubmitSearch}
     >
       <div>

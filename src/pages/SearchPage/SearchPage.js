@@ -8,7 +8,7 @@ import SearchForm from "./SearchForm";
 function SearchPage() {
   return (
     <div className="search-page">
-      <div className="search-page__container p-5">
+      <div className="search-page__container">
         <div className="search-page__head mb-3">
           <div className="search-page__title-box">
             <h2 className="search-page__title mb-4">НАЙДИТЕ НЕОБХОДИМЫЕ ДАННЫЕ В ПАРУ КЛИКОВ</h2>
@@ -18,13 +18,13 @@ function SearchPage() {
             </p>
           </div>
           <div>
-            <img src={docs}/>
+            <img className="docs-image" src={docs}/>
             <img className="folder-image" src={folder}/>
           </div>
         </div>
         <div className="search-page__main ">
           <SearchForm />
-          <img src={searchGroup}/>
+          <img className="search-page__img_bottom" src={searchGroup}/>
         </div>
       </div>
     </div>

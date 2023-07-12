@@ -1,22 +1,26 @@
-.auth{
+.auth {
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-between;
   flex-grow: 1;
-  margin-top: 4em;
+  padding: 3em;
 }
 
-.auth__box{
+.auth__box {
   width: 52%;
 }
 
-.auth__title{
-  font-family: 'Ferry';
+.auth__title {
+  font-family: "Ferry";
   font-style: normal;
   font-weight: 900;
   font-size: 40px;
   line-height: 48px;
   letter-spacing: 0.02em;
+}
+
+.auth__title_mobile {
+  display: none;
 }
 
 .characters {
@@ -43,7 +47,7 @@
 }
 
 .nav-underline .nav-link {
-  color: #C7C7C7;
+  color: #c7c7c7;
   font-weight: 400;
 }
 
@@ -53,47 +57,87 @@
 }
 
 .form-label {
-  color: #949494
+  color: #949494;
 }
 
-.submit-btn:disabled{
-  background-color: #5970FF;
-  border-color: #5970FF;
+.submit-btn:disabled {
+  background-color: #5970ff;
+  border-color: #5970ff;
 }
 
 .submit-btn:hover {
-  background-color: #5970FF;
-  border-color: #5970FF;
+  background-color: #5970ff;
+  border-color: #5970ff;
   background-image: linear-gradient(rgb(0 0 0/40%) 0 0);
 }
 
 .submit-btn {
   width: 19em;
-  background-color:  #5970FF;
-  border-color: #5970FF;
+  background-color: #5970ff;
+  border-color: #5970ff;
 }
 
 .reset-password {
-  border-color: #5970FF;
-  color: #5970FF;
+  border-color: #5970ff;
+  color: #5970ff;
 }
 
 .sign-in__social-btn {
-  background-color: #FFFF;
+  background-color: #ffff;
   border: none;
   padding: 0;
-  margin-right: 5%; 
+  margin-right: 5%;
 }
 
 /*MOBILE*/
 
-@media screen and (max-width: 960px) {
+@media screen and (max-width: 720px) {
   .auth {
     flex-direction: column-reverse;
+    justify-content: flex-end;
+    padding: 1em;
+  }
+  .auth__title {
+    display: none;
   }
 
-  .auth__title{
+  .auth__title_mobile {
+    display: inline;
+    margin-bottom: 3em;
+    height: 7em;
+    color: #000;
+    font-family: "Ferry";
     font-size: 22px;
+    font-style: normal;
     font-weight: 900;
+    line-height: normal;
+    letter-spacing: 0.44px;
+  }
+
+  .auth__box{
+    width: 100%;
+  }
+
+  .sign-in {
+    min-width: 21em;
+  }
+
+  .sign-in__social-btn{
+    margin: 0 auto;
+  }
+
+  .sign-in__icon{
+    margin: -4em 6em;
+  }
+
+  .submit-btn {
+    width: 13em;
+  }
+
+
+
+  .characters{
+    width: 100%;
+    margin: 0 auto;
   }
 }

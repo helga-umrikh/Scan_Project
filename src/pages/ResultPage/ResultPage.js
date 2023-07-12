@@ -55,7 +55,7 @@ function ResultPage() {
 
   return (
     <div className="result-page">
-      <div className="result-page__container p-5">
+      <div className="result-page__container">
         <div className="result-page__top-container">
           <div className="result-page__title-box">
             <h2 className="result-page__title">
@@ -66,7 +66,7 @@ function ResultPage() {
             </p>
           </div>
           <div className="result-page__icon">
-            <img src={result_icon}></img>
+            <img className="result-page__icon" src={result_icon}></img>
           </div>
         </div>
         <div className="result-page__mid-container">
@@ -76,8 +76,8 @@ function ResultPage() {
               Найдено NUM вариантов
             </p>
           </div>
-          {/* <ResultSlider /> */}
-          <TestSlider />
+          <ResultSlider />
+          {/* <TestSlider /> */}
         </div>
         <h3 className="result-page__mid-title mb-5">СПИСОК ДОКУМЕНТОВ</h3>
         <div className="result-page__cards-container mb-5">
@@ -92,4 +92,4 @@ function ResultPage() {
   );
 }
 
-export default ResultPage;
+export default ResultPage; 

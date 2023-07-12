@@ -2,6 +2,10 @@
   flex-grow: 1;
 }
 
+.result-page__container{
+  padding: 3em;
+}
+
 .result-page__top-container {
   display: flex;
   flex-direction: row;
@@ -88,19 +92,22 @@
 
 /*DOCUMENT-CARD*/
 
-.card {
+.result-card {
   max-width: 41em;
   box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.2);
+  padding: 0.5em;
 }
 
-.card__head {
+.result-card__head {
   display: flex;
   flex-direction: row;
+  
+  justify-content: space-between;
 }
 
-.card__head-text {
+.result-card__head-text {
   color: #949494;
-  font-family: Inter;
+  font-family: "Inter";
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
@@ -108,7 +115,7 @@
   letter-spacing: 0.32px;
 }
 
-.card__title {
+.result-card__title {
   color: #000;
   font-family: "Inter";
   font-size: 26px;
@@ -118,7 +125,7 @@
   letter-spacing: 0.52px;
 }
 
-.card__tag {
+.result-card__tag {
   max-width: 13em;
   border-radius: 5px;
   background: #ffb64f;
@@ -128,7 +135,7 @@
   font-size: 12px;
 }
 
-.card__text {
+.result-card__text {
   color: #000;
   font-family: "Inter";
   font-size: 16px;
@@ -139,19 +146,69 @@
   opacity: 0.5;
 }
 
-.card__footer {
+.result-card__footer {
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
 }
 
-.card-button {
+.result-card-button {
   padding: 0.5em 2em;
   background: #7ce3e1;
   border-color: #7ce3e1;
   color: #000;
 }
 
-.card-button:hover {
+.result-card-button:hover {
   background-image: linear-gradient(rgb(0 0 0/40%) 0 0);
+}
+
+@media screen and (max-width: 720px) {
+  .result-card{
+    padding: 0;
+    margin-bottom: 1em;
+  }
+
+  .result-page__container{
+    padding: 1em;
+  }
+
+  .result-page__top-container {
+    flex-direction: column;
+  }
+
+  .result-page__cards-container {
+    flex-direction: column;
+  }
+  .result-page__icon{
+    width: 100%;
+  }
+
+  .result-page__title-box{
+    padding: 0;
+  }
+
+  .result-page__title{
+    margin-bottom: 1em;
+    font-size: 1.5em;
+  }
+
+  .result-page__subtitle{
+    padding: 0;
+  }
+  .result-page__mid-title{
+    margin-top: 2em;
+    font-size: 1.5em;
+  }
+
+  .result-card__head-text{
+    font-size: 14px;
+  }
+
+  .result-card__title{
+    font-size: 19px;
+  }
+  .result-card__text{
+    font-size: 12px;
+  }
 }

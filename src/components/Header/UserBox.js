@@ -15,6 +15,7 @@ function UserBox() {
               bgColor={"#FFFFFF"}
               title={"spinner-circle"}
               size={50}
+              className="limit-table__loader-icon"
             />
           </div>
         }

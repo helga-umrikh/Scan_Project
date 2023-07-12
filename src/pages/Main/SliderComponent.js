@@ -1,12 +1,11 @@
 import React from "react";
-import "./../Main/Main.css"
+import "./../Main/Main.css";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import slide1 from "./../../images/slide1.svg";
 import slide2 from "./../../images/slide2.svg";
 import slide3 from "./../../images/slide3.svg";
-
 
 function SliderComponent() {
   function SamplePrevArrow(props) {
@@ -25,34 +24,27 @@ function SliderComponent() {
     speed: 500,
     slidesToShow: 3,
     slidesToScroll: 2,
-    autoplay: true,
+    autoplay: false,
     autoplaySpeed: 4000,
     prevArrow: <SamplePrevArrow />,
     responsive: [
       {
-        breakpoint: 1200,
-        settings: {
-          slidesToShow: 3,
-          slidesToScroll: 3,
-          infinite: true
-        }
-      },
-      {
-        breakpoint: 600,
+        breakpoint: 1400,
         settings: {
           slidesToShow: 2,
-          slidesToScroll: 2,
-          initialSlide: 2
-        }
+          slidesToScroll: 1,
+          initialSlide: 1,
+        },
       },
       {
-        breakpoint: 480,
+        breakpoint: 1000,
         settings: {
           slidesToShow: 1,
-          slidesToScroll: 1
-        }
-      }
-    ]
+          slidesToScroll: 1,
+          initialSlide: 1,
+        },
+      },
+    ],
   };
   return (
     <div className="slider-container">

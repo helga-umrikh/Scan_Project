@@ -6,7 +6,7 @@ import { CardGroup } from "react-bootstrap";
 function Tariff() {
   return (
     <>
-      <CardGroup className="d-flex justify-content-between">
+      <CardGroup className="tariff-container">
         {dataMock.map((tariff) => (
           <TariffCard tariffData={tariff} />
         ))}

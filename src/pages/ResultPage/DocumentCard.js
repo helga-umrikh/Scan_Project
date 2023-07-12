@@ -16,20 +16,20 @@ function DocumentCard({
   // }
 }) {
   return (
-    <Card className="card p-2">
+    <Card className="result-card">
       <Card.Body>
-        <div className="card__head">
-          <p className="me-4 card__head-text">13.09.2021</p>
-          <Card.Link href="" className="card__head-text">Комсомольская правда KP.RU</Card.Link>
+        <div className="result-card__head">
+          <p className="result-card__head-text">13.09.2021</p>
+          <Card.Link href="#" className="result-card__head-text">Комсомольская правда KP.RU</Card.Link>
         </div>
-        <Card.Title className="card__title mb-3">
+        <Card.Title className="result-card__title mb-3">
           Скиллфэктори - лучшая онлайн-школа для будущих айтишников
         </Card.Title>
-        <div className="card__tag mb-3">
+        <div className="result-card__tag mb-3">
           <Card.Text>Технические новости</Card.Text>
         </div>
         <Card.Img src={example}></Card.Img>
-        <Card.Text className="card__text my-3">
+        <Card.Text className="result-card__text my-3">
           SkillFactory — школа для всех, кто хочет изменить свою карьеру и
           жизнь. С 2016 года обучение прошли 20 000+ человек из 40 стран с 4
           континентов, самому взрослому студенту сейчас 86 лет. Выпускники
@@ -41,9 +41,9 @@ function DocumentCard({
           карьерный центр помогает составить резюме, подготовиться к
           собеседованиям и познакомиться с IT-рекрутерами.
         </Card.Text>
-        <div className="card__footer">
-          <Button className="card-button my-3">Читать в источнике</Button>
-          <p className="card__head-text">1000 слова</p>
+        <div className="result-card__footer">
+          <Button className="result-card-button my-3">Читать в источнике</Button>
+          <p className="result-card__head-text">1000 слова</p>
         </div>
       </Card.Body>
     </Card>

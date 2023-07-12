@@ -173,7 +173,7 @@ function SignIn2() {
                 Войти
               </Button>
               <Form.Group className="mb-3 text-center p-2">
-                <Link className="reset-password" to="/reset_password">
+                <Link className="reset-password" to="#">
                   Восстановить пароль
                 </Link>
               </Form.Group>

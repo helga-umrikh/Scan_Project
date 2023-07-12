@@ -19,7 +19,7 @@ function Main() {
 
   return (
     <div className="main">
-      <div className="main-container p-5">
+      <div className="main-container">
         <div className="main-top">
           <div className="main-top__box">
             <h1 className="main-title mb-4">
