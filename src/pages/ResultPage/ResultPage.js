@@ -1,56 +1,94 @@
 import React, { useState, useEffect } from "react";
 import { Button } from "react-bootstrap";
-import { useSelector } from 'react-redux'
+import { useSelector } from "react-redux";
 import "./ResultPage.css";
 import result_icon from "../../images/result_icon.svg";
-import ResultSlider from "./ResultSlider";
+import ResultPageSlider from "./ResultPageSlider";
 import DocumentCard from "./DocumentCard";
-import { selectData } from '../../features/histogramsSlice'
+import { selectData } from "../../features/histogramsSlice";
+import { selectHistograms } from "../../features/histogramsSlice";
+import { getCardsData } from "../../api/getCardsData";
 
 function ResultPage() {
   const resultData = useSelector(selectData);
-  const initialCardsCount = 4;
+  const ids = resultData.items.map((item) => item.encodedId);
+  const initialCardsCount = 10;
 
   const [cardsData, setCardsData] = useState([]);
-  const [next, setNext] = useState(initialCardsCount);
+  const [cardsCount, setCardsCount] = useState(initialCardsCount);
 
   const handleMoreImage = () => {
-    setNext(next + initialCardsCount);
+    getCardsData(ids.slice(cardsCount, cardsCount + initialCardsCount)).then(
+      (data) => {
+        setCardsData([...cardsData, ...data]);
+        setCardsCount(cardsCount + initialCardsCount);
+      }
+    );
   };
 
-  const getCardsData = (ids) => {
-    const token = JSON.parse(localStorage.getItem("authToken"));
-    const url = "https://gateway.scan-interfax.ru/api/v1/documents";
-    const payload = {
-      ids,
-    };
-
-    const options = {
-      method: "POST",
-      mode: "cors",
-      headers: {
-        Authorization: `Bearer ${token.accessToken}`,
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-      body: JSON.stringify(payload),
-    };
-
-    return fetch(url, options)
-      .then((response) => {
-        return response.json();
-      })
-      .catch(function (error) {
-        throw new Error(error);
-      });
-  }
-
   useEffect(() => {
-    const ids = resultData.items.map(item => item.encodedId)
-    getCardsData(ids).then(data => {
-      setCardsData(data)
-    })
-  }, [resultData])
+    getCardsData(ids.slice(0, cardsCount)).then((data) => {
+      setCardsData(data);
+    });
+  }, []);
+
+  const renderCards = () =>
+    cardsData.map((card, index) => {
+      const data = card.ok;
+      const dataAttributes = data.attributes;
+      const xmlString = data.content.markup;
+      const parser = new DOMParser();
+      const xmlDocument = parser.parseFromString(xmlString, "application/xml");
+      const sentences = xmlDocument.getElementsByTagName("sentence");
+      const text = Array.from(sentences).reduce((acc, sentence) => {
+        return (
+          acc + sentence.textContent.trim().replaceAll(/<[^>]*>/g, "") + " "
+        );
+      }, "");
+
+      const badgeTypes = {
+        isAnnouncement: "announcements",
+        isDigest: "news",
+        isTechNews: "technews",
+      };
+      const badgeType = Object.keys(badgeTypes).find(
+        (type) => dataAttributes[type]
+      );
+      const badge = badgeType ? badgeTypes[badgeType] : "тег публикации";
+
+      const dateString = data.issueDate;
+      const date = new Date(dateString);
+      const formattedDate = date
+        .toLocaleDateString("en-GB", {
+          day: "2-digit",
+          month: "2-digit",
+          year: "numeric",
+        })
+        .split("/")
+        .join(".");
+
+      const cardInfo = {
+        date: formattedDate,
+        link: data.source.name,
+        title: data.title.text,
+        badge: badge,
+        text: text,
+        articleLink: data.url,
+        words: dataAttributes.wordCount,
+      };
+
+      return (
+        <div key={index} className="document-card-container">
+          <DocumentCard cardInfo={cardInfo} />
+        </div>
+      );
+    });
+
+
+    const dataHistograms = useSelector(selectHistograms);
+    const totalDocs = dataHistograms[0];
+    const variantsCount = totalDocs.data.length;
+
 
   return (
     <div className="result-page">
@@ -61,7 +99,8 @@ function ResultPage() {
               ИЩЕМ.СКОРО <br /> БУДУТ РЕЗУЛЬТАТЫ
             </h2>
             <p className="result-page__subtitle">
-              Поиск может занять некоторое время, просим сохранять терпение.
+              Поиск может занять некоторое время,
+              <br /> просим сохранять терпение.
             </p>
           </div>
           <div className="result-page__icon">
@@ -72,34 +111,20 @@ function ResultPage() {
           <div className="result-page__title-box">
             <h3 className="result-page__mid-title pb-2">ОБЩАЯ СВОДКА</h3>
             <p className="result-page__result-subtitle">
-              Найдено NUM вариантов
+              Найдено {variantsCount} вариантов
             </p>
           </div>
-          <ResultSlider />
+          <ResultPageSlider />
         </div>
         <h3 className="result-page__mid-title mb-5">СПИСОК ДОКУМЕНТОВ</h3>
-        <div className="result-page__cards-container mb-5">
-
-
-        {cardsData?.slice(0, next)?.map((card, index) => {
-            return (
-              <div
-                key={index}
-              >
-                <DocumentCard />
-              </div>
-            );
-          })}
-        </div>
+        <div className="result-page__cards-container mb-5">{renderCards()}</div>
         <div className="result-page__button-box">
-
-
-          {next < cardsData?.length && (
+          {cardsData.length < ids.length && (
             <Button
-              className="mt-4"
+              className="load-cards__button mt-4"
               onClick={handleMoreImage}
             >
-              Load more
+              Показать больше
             </Button>
           )}
         </div>
@@ -108,4 +133,4 @@ function ResultPage() {
   );
 }
 
-export default ResultPage; 
+export default ResultPage;

@@ -7,19 +7,8 @@ import "slick-carousel/slick/slick-theme.css";
 // import Slide from "./Slide";
 
 function ResultSlider() {
-  // const data = useSelector(selectHistograms);
-  // const totalDocs = data[0];
-  // const totalDocsData = totalDocs.data;
-  // const riskFactors = data[1];
-  // const riskFactorsData = riskFactors.data;
-
-  // const sliderData = totalDocsData.map(({ date, value }, idx) => {
-  //   return {
-  //     date,
-  //     docsValue: value,
-  //     risksValue: riskFactorsData[idx].value,
-  //   };
-  // });
+  const data = useSelector(selectHistograms);
+  const totalDocs = data[0];
 
   const settings = {
     dots: false,

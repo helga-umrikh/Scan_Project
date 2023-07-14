@@ -1,6 +1,6 @@
 import { logIn } from '../features/userSlice'
 
-export const getUserInfo = (token, dispatch) => {
+export const getUserInfo = async (token, dispatch) => {
 
   if (token.errorCode) {
     return;
@@ -13,23 +13,23 @@ export const getUserInfo = (token, dispatch) => {
       Authorization: `Bearer ${token.accessToken}`,
     },
   };
-  return fetch(url, options)
+  
+  const response = await fetch(url, options)
     .then((response) => {
       return response.json();
-    })
-    .then((userData) => {
-      localStorage.setItem("userData", JSON.stringify(userData));
-      return userData;
-    })
-    .then((userData) => {
-      dispatch(
-        logIn({
-          logIn: true,
-          userInfo: userData.eventFiltersInfo,
-        })
-      );
     })
     .catch(function (error) {
       throw new Error(error);
     });
+
+  if(!response.errorCode) {
+    localStorage.setItem("userData", JSON.stringify(response));
+
+    dispatch(
+      logIn({
+        logIn: true,
+        userInfo: response.eventFiltersInfo,
+      })
+    );
+  }
 }

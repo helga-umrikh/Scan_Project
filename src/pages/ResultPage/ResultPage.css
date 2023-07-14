@@ -1,8 +1,17 @@
+@font-face {
+  font-family: "Ferry";
+  src: url(../../fonts/ferry_black.otf);
+}
+@font-face {
+  font-family: "Inter";
+  src: url(../..//fonts/Inter-VariableFont_slnt\,wght.ttf);
+}
+
 .result-page {
   flex-grow: 1;
 }
 
-.result-page__container{
+.result-page__container {
   padding: 3em;
 }
 
@@ -50,6 +59,10 @@
   letter-spacing: 0.6px;
 }
 
+.result-page__mid-container {
+  margin-bottom: 3em;
+}
+
 .result-page__result-subtitle {
   color: #949494;
   font-family: "Inter";
@@ -63,7 +76,12 @@
 .result-page__cards-container {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   justify-content: space-evenly;
+}
+
+.result-page__icon {
+  width: 45%;
 }
 
 .result-page__button-box {
@@ -96,12 +114,13 @@
   max-width: 41em;
   box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.2);
   padding: 0.5em;
+  margin-bottom: 1em;
 }
 
 .result-card__head {
   display: flex;
   flex-direction: row;
-  
+  flex-wrap: wrap;
   justify-content: space-between;
 }
 
@@ -156,6 +175,10 @@
   padding: 0.5em 2em;
   background: #7ce3e1;
   border-color: #7ce3e1;
+}
+
+.result-card-button > a {
+  text-decoration: none;
   color: #000;
 }
 
@@ -163,13 +186,53 @@
   background-image: linear-gradient(rgb(0 0 0/40%) 0 0);
 }
 
+.load-cards__button {
+  width: 24em;
+  height: 3.5em;
+  background-color: #5970ff;
+  border-color: #5970ff;
+
+  color: #fff;
+  font-family: "Inter";
+  font-size: 22px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: 0.88px;
+}
+
+
+.load-cards__button:hover {
+  background-image: linear-gradient(rgb(0 0 0/40%) 0 0);
+}
+
+.test{
+  height: 618px;
+  overflow: hidden;
+  margin-bottom: 20px;
+
+}
+
+.slider-container{
+  display: flex;
+  flex-direction: row;
+}
+
+
+
+
+
 @media screen and (max-width: 720px) {
-  .result-card{
+  .document-card-container {
+    width: 100%;
+  }
+
+  .result-card {
     padding: 0;
     margin-bottom: 1em;
   }
 
-  .result-page__container{
+  .result-page__container {
     padding: 1em;
   }
 
@@ -180,35 +243,35 @@
   .result-page__cards-container {
     flex-direction: column;
   }
-  .result-page__icon{
+  .result-page__icon {
     width: 100%;
   }
 
-  .result-page__title-box{
+  .result-page__title-box {
     padding: 0;
   }
 
-  .result-page__title{
+  .result-page__title {
     margin-bottom: 1em;
     font-size: 1.5em;
   }
 
-  .result-page__subtitle{
+  .result-page__subtitle {
     padding: 0;
   }
-  .result-page__mid-title{
+  .result-page__mid-title {
     margin-top: 2em;
     font-size: 1.5em;
   }
 
-  .result-card__head-text{
+  .result-card__head-text {
     font-size: 14px;
   }
 
-  .result-card__title{
+  .result-card__title {
     font-size: 19px;
   }
-  .result-card__text{
+  .result-card__text {
     font-size: 12px;
   }
 }
