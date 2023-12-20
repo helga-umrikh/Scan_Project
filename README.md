@@ -34,8 +34,3 @@ To start the app, run the following command:
 ```cpp
 npm start
 ```
-<<<<<<< HEAD
-This will start the development server and open the app in your default web browser. You should now be able to navigate to the home page and explore Scan service app available on the site.
-=======
-This will start the development server and open the app in your default web browser. You should now be able to navigate to the home page and explore Scan service app available on the site.
->>>>>>> 6660ee6d80e1f674da6d3e2a83bdd951ceccaf08
