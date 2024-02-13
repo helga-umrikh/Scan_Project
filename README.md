@@ -2,7 +2,7 @@
 
 This document will provide you with an overview of the app and guide you through the process of setting it up and starting it.
 
-##Link to deploy
+## Link to deploy
 [DEPLOY](https://scan-project-kappa.vercel.app/)
 
 **About the App** 
