@@ -5,7 +5,7 @@ This document will provide you with an overview of the app and guide you through
 ## Link to deploy
 [DEPLOY](https://scan-project-kappa.vercel.app/)
 
-**About the App** 
+### **About the App** 
 My app is a client-side application that searches for publications about a company (legal entity) in the media using its tax identification number.
 
 The app is built using React Redux Toolkit and utilizes several UI frameworks
